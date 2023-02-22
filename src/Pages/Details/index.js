@@ -16,14 +16,30 @@ function Details() {
             const response = await api.get(`/movie/${id}`, {
                 params: {
                     api_key: 'e3557a63a0916ff565660d0e9b496cba',
-                    language: 'pt-BR',
                 }
             })
             setMovie(response.data)
         }
         onMovie()
 
-    }, [])
+    }, [id])
+
+    function SavedMovie() {
+        const favorites = localStorage.getItem('@favorites');
+        let moviesSaves = JSON.parse(favorites) || []
+        const storeMovie = moviesSaves.some(((movieSave) => movieSave.id === movie.id))
+
+        if (storeMovie) {
+            alert('Sorry, the movie has already been saved')
+            return
+        }
+
+        moviesSaves.push(movie)
+        localStorage.setItem('@favorites', JSON.stringify(moviesSaves))
+        alert('Movie is saved successfully!!!')
+    }
+
+
 
     return (
         <Container>
@@ -34,6 +50,7 @@ function Details() {
                     <span>Sinopse: {movie.overview}</span>
                     <span className="release-date">Release date: {movie.release_date}</span>
                     <Link to="/"><button>Go Back</button></Link>
+                    <button onClick={SavedMovie}>Favorite</button>
                 </div>
             </div>
         </Container>

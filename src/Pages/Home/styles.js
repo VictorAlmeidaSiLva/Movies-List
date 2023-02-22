@@ -7,7 +7,21 @@ export const Container = styled.div`
         margin: 4rem 0;
     }
 
-   
+    button {
+        background: #6654da;
+        border: none;
+        cursor: pointer;
+        border-radius: 1rem;
+        color: white;
+        padding: 0.8rem 2rem;
+        margin-top: 1rem;
+        font-size: 100%;
+        margin-left: 50px;
+    }
+
+    button:hover {
+        background: #5848c2;
+    }
 `
 
 export const MovieList = styled.ul`

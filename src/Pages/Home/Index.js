@@ -13,7 +13,6 @@ function Home() {
         const response = await api.get('/movie/now_playing', {
             params: {
                 api_key: 'e3557a63a0916ff565660d0e9b496cba',
-                language: 'pt-BR',
             }
         })
         setMovie(response.data.results)
@@ -24,6 +23,8 @@ function Home() {
 
     return (
         <Container>
+            <Link to="/"><button>Home</button></Link>
+            <Link to="/Favorites"><button>Favorites</button></Link>
             <h1>Movies</h1>
             <MovieList>
 
