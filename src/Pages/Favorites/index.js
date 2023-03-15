@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Container } from "./styles"
+import { Container, Movies, MoviesFav } from "./styles"
 import { useEffect, useState } from "react"
 
 
@@ -23,24 +23,24 @@ function Favorite() {
         })
         setMovie(remove)
         localStorage.setItem('@favorites', JSON.stringify(remove))
-        
+
     }
 
     return (
         <Container>
             <Link to="/"><button>Home</button></Link>
-            <div>
-                <h1>Favorites</h1>
+            <h1>Favorites</h1>
+            <MoviesFav>
                 {movie.map(movies => {
                     return (
-                        <div>
-                            <h1>{movies.title}</h1>
-                            <button onClick={() => deleteItemMovie(movies.id)}>Remove movie</button>
-                        </div>
+                        <Movies>
+                            <button onClick={() => deleteItemMovie(movies.id)}>X</button>
+                            <Link to={`/details/${movies.id}`}><img src={`${image_path}${movies.poster_path}`} alt={movies.title} /></Link>
+                            <span>{movies.title}</span>
+                        </Movies>
                     )
                 })}
-
-            </div>
+            </MoviesFav>
         </Container>
     )
 }
